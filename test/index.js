@@ -47,7 +47,7 @@ test('snap name has no letters', t => {
 if (!process.env['FAST_TESTS_ONLY']) {
   test.serial('creates a snap', t => {
     let snapPath
-    return snap({ src: path.join(__dirname, 'fixtures', 'app-with-asar') })
+    return snap({ src: path.join(__dirname, 'fixtures', 'app-with-asar'), base: 'base18' })
       .then(path => {
         t.truthy(path, 'snap returns a truthy value')
         snapPath = path
@@ -59,7 +59,7 @@ if (!process.env['FAST_TESTS_ONLY']) {
     let snapPath
     const destDir = path.join(t.context.tempDir.name, 'custom-output-directory')
     return fs.mkdirs(destDir)
-      .then(() => snap({ src: path.join(__dirname, 'fixtures', 'app-with-asar'), dest: destDir }))
+      .then(() => snap({ src: path.join(__dirname, 'fixtures', 'app-with-asar'), dest: destDir, base: 'base18' }))
       .then(path => {
         t.truthy(path, 'snap returns a truthy value')
         snapPath = path
