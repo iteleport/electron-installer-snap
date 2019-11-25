@@ -20,7 +20,7 @@ const path = require('path')
 
 async function copyLauncher (snapDir, config) {
   if (config.confinement === 'classic') {
-    const binDir = path.join(snapDir, 'bin')
+    const binDir = path.join(snapDir, 'prime', 'bin')
     const launcherPath = path.resolve(__dirname, '..', 'resources', 'classic-launcher.sh')
     await fs.mkdirs(binDir)
     await fs.copy(launcherPath, path.join(binDir, 'electron-launch'))

@@ -124,17 +124,17 @@ class SnapcraftYAML {
   }
 
   transformBrowserSandbox () {
-    debug('Replacing browser-support plug with browser-sandbox')
-    pull(this.app.plugs, 'browser-support')
-    this.app.plugs.push('browser-sandbox')
-    if (!this.data.plugs) {
-      this.data.plugs = {}
-    }
-    this.data.plugs['browser-sandbox'] = {
-      'allow-sandbox': true,
-      interface: 'browser-support'
-    }
-    console.warn('The browser-sandbox feature will trigger a manual review in the Snap store.')
+    // debug('Replacing browser-support plug with browser-sandbox')
+    // pull(this.app.plugs, 'browser-support')
+    // this.app.plugs.push('browser-sandbox')
+    // if (!this.data.plugs) {
+    //   this.data.plugs = {}
+    // }
+    // this.data.plugs['browser-sandbox'] = {
+    //   'allow-sandbox': true,
+    //   interface: 'browser-support'
+    // }
+    // console.warn('The browser-sandbox feature will trigger a manual review in the Snap store.')
   }
 
   transformMPRIS () {
@@ -194,6 +194,10 @@ class SnapcraftYAML {
     this.app.command = createDesktopLaunchCommand(this.data)
     this.electronVersion = await common.readElectronVersion(packageDir)
     this.transformFeatures()
+    if (this.data.confinement === 'classic') {
+      delete this.data.plugs;
+      delete this.data.apps[this.data.name].plugs;
+    }
     return this.transformParts(packageDir)
   }
 
