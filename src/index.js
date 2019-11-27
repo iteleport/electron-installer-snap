@@ -87,7 +87,7 @@ class SnapCreator {
     const snapMetaDir = path.join(snapDir, 'snap')
     const snapGuiDir = path.join(snapMetaDir, 'gui')
     await fs.ensureDir(snapGuiDir)
-    await updateSandboxHelperPermissions(this.packageDir)
+    // await updateSandboxHelperPermissions(this.packageDir)
     await createDesktopFile(snapGuiDir, this.config)
     await copyIcon(snapGuiDir, this.config)
     await copyLauncher(snapDir, this.config)
