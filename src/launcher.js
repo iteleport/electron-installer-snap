@@ -35,7 +35,7 @@ function createDesktopLaunchCommand (data) {
 
   const launcher = data.confinement === 'classic' ? 'bin/electron-launch' : 'desktop-launch'
 
-  return `${launcher} '$SNAP/${data.name}/${executableName}'`
+  return `${launcher} '$SNAP/${data.name}/${executableName}'${data.confinement === 'classic' ? " '--no-sandbox'" : ""}`
 }
 
 module.exports = {
